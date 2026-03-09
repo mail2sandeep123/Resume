@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sandeep Sharma — Principal Product Leader</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --hero-bg: #0f1b2d;
+      --s1-bg: #f0faf4; --s1-accent: #1a7a4a; --s1-border: #a8dfc0;
+      --s2-bg: #fff8f0; --s2-accent: #c45c00; --s2-border: #f5c99a;
+      --s3-bg: #f3f0ff; --s3-accent: #5b3ec8; --s3-border: #c5b8f0;
+      --s4-bg: #f0fdf4; --s4-accent: #16803c; --s4-border: #86efac;
+      --s5-bg: #f0f7ff; --s5-accent: #1558b0; --s5-border: #9dc4f0;
+      --dark: #111827; --text: #2d3748; --muted: #718096;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      color: var(--dark);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      height: 58px; display: flex; align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      background: rgba(15,27,45,0.93);
+      backdrop-filter: blur(14px);
+    }
+    .nav-name { font-family: 'Playfair Display', serif; font-size: 1rem; color: #fff; }
+    .nav-links { display: flex; gap: 0.3rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; font-size: 0.74rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: rgba(255,255,255,0.5); padding: 0.4rem 0.75rem;
+      border-radius: 4px; transition: background 0.2s, color 0.2s;
+    }
+    .nav-links a:hover { background: rgba(255,255,255,0.12); color: #fff; }
+
+    /* HERO */
+    header {
+      background: var(--hero-bg);
+      background-image:
+        radial-gradient(ellipse 60% 50% at 80% 30%, rgba(59,130,246,0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 10% 80%, rgba(139,92,246,0.14) 0%, transparent 60%);
+      padding: 140px clamp(1.5rem, 6vw, 5rem) 90px;
+    }
+    .hero-inner { max-width: 860px; margin: 0 auto; }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 30px; padding: 0.35rem 1rem;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: #93c5fd; margin-bottom: 1.8rem;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero-badge::before {
+      content: ''; width: 7px; height: 7px; border-radius: 50%;
+      background: #34d399; box-shadow: 0 0 8px #34d399;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 900;
+      line-height: 1.05; color: #fff; letter-spacing: -0.02em;
+      margin-bottom: 1.4rem; animation: fadeUp 0.7s ease 0.1s both;
+    }
+    h1 em {
+      font-style: italic;
+      background: linear-gradient(90deg, #60a5fa, #a78bfa);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    .hero-tagline {
+      font-size: clamp(0.95rem, 1.4vw, 1.1rem); color: rgba(255,255,255,0.6);
+      max-width: 580px; line-height: 1.75; font-weight: 300;
+      margin-bottom: 2.5rem; animation: fadeUp 0.7s ease 0.2s both;
+    }
+
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 0.75rem; animation: fadeUp 0.7s ease 0.3s both; }
+    .hero-pill {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.82rem; color: rgba(255,255,255,0.7); text-decoration: none;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+      padding: 0.45rem 1rem; border-radius: 6px; transition: background 0.2s, color 0.2s;
+    }
+    .hero-pill:hover { background: rgba(255,255,255,0.13); color: #fff; }
+
+    /* SECTION BASE */
+    .section { padding: clamp(3.5rem, 7vw, 5.5rem) clamp(1.5rem, 6vw, 5rem); }
+    .section-inner { max-width: 860px; margin: 0 auto; }
+
+    .section-eyebrow { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 2.5rem; }
+    .eyebrow-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .eyebrow-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; }
+    .eyebrow-line { flex: 1; height: 1px; opacity: 0.22; }
+
+    /* ABOUT — green */
+    .s-about { background: var(--s1-bg); }
+    .s-about .eyebrow-dot { background: var(--s1-accent); }
+    .s-about .eyebrow-label { color: var(--s1-accent); }
+    .s-about .eyebrow-line { background: var(--s1-accent); }
+    .about-card {
+      border-left: 4px solid var(--s1-accent); background: #fff;
+      border-radius: 0 12px 12px 0; padding: 1.8rem 2rem;
+      box-shadow: 0 2px 20px rgba(26,122,74,0.08);
+      font-size: 1.05rem; line-height: 1.85; color: var(--text); font-weight: 300;
+    }
+
+    /* SKILLS — orange */
+    .s-skills { background: var(--s2-bg); }
+    .s-skills .eyebrow-dot { background: var(--s2-accent); }
+    .s-skills .eyebrow-label { color: var(--s2-accent); }
+    .s-skills .eyebrow-line { background: var(--s2-accent); }
+    .skills-grid { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .skill-tag {
+      font-size: 0.8rem; font-weight: 500; padding: 0.45rem 1rem;
+      border-radius: 6px; border: 1.5px solid;
+      transition: transform 0.15s, box-shadow 0.15s; cursor: default;
+    }
+    .skill-tag:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+    .skill-tag:nth-child(4n+1) { background: #fff3e6; border-color: #f5c99a; color: #7a3a00; }
+    .skill-tag:nth-child(4n+2) { background: #e8f5ff; border-color: #93c5fd; color: #1558b0; }
+    .skill-tag:nth-child(4n+3) { background: #f0fff4; border-color: #a8dfc0; color: #1a7a4a; }
+    .skill-tag:nth-child(4n+0) { background: #f5f0ff; border-color: #c5b8f0; color: #4c2da8; }
+
+    /* EXPERIENCE — purple */
+    .s-experience { background: var(--s3-bg); }
+    .s-experience .eyebrow-dot { background: var(--s3-accent); }
+    .s-experience .eyebrow-label { color: var(--s3-accent); }
+    .s-experience .eyebrow-line { background: var(--s3-accent); }
+
+    .exp-timeline { position: relative; padding-left: 2rem; }
+    .exp-timeline::before {
+      content: ''; position: absolute; left: 0; top: 12px; bottom: 12px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--s3-accent), var(--s4-accent), var(--s5-accent));
+      opacity: 0.3; border-radius: 2px;
+    }
+    .exp-block { position: relative; margin-bottom: 3.5rem; }
+    .exp-block::before {
+      content: ''; position: absolute; left: -2.375rem; top: 10px;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--s3-accent); border: 3px solid var(--s3-bg);
+      box-shadow: 0 0 0 2px var(--s3-accent);
+    }
+    .exp-block:nth-child(2)::before { background: var(--s4-accent); box-shadow: 0 0 0 2px var(--s4-accent); border-color: var(--s3-bg); }
+    .exp-block:nth-child(3)::before { background: var(--s5-accent); box-shadow: 0 0 0 2px var(--s5-accent); border-color: var(--s3-bg); }
+
+    .exp-card {
+      background: #fff; border-radius: 12px; padding: 1.6rem 1.8rem;
+      box-shadow: 0 2px 18px rgba(91,62,200,0.07);
+      border: 1px solid rgba(91,62,200,0.1);
+    }
+    .exp-top {
+      display: flex; flex-wrap: wrap; justify-content: space-between;
+      align-items: flex-start; gap: 0.6rem; margin-bottom: 0.6rem;
+    }
+    .exp-title { font-family: 'Playfair Display', serif; font-size: 1.18rem; color: var(--dark); }
+    .exp-period {
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em;
+      padding: 0.3rem 0.9rem; border-radius: 20px; white-space: nowrap;
+    }
+    .exp-block:nth-child(1) .exp-period { background: #f5f0ff; color: var(--s3-accent); border: 1px solid #c5b8f0; }
+    .exp-block:nth-child(2) .exp-period { background: var(--s4-bg); color: var(--s4-accent); border: 1px solid var(--s4-border); }
+    .exp-block:nth-child(3) .exp-period { background: var(--s5-bg); color: var(--s5-accent); border: 1px solid var(--s5-border); }
+
+    .exp-company { font-weight: 700; font-size: 0.85rem; margin-bottom: 0.25rem; }
+    .exp-block:nth-child(1) .exp-company { color: var(--s3-accent); }
+    .exp-block:nth-child(2) .exp-company { color: var(--s4-accent); }
+    .exp-block:nth-child(3) .exp-company { color: var(--s5-accent); }
+    .exp-project { font-size: 0.8rem; color: var(--muted); font-style: italic; margin-bottom: 1rem; }
+
+    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+    .exp-bullets li {
+      font-size: 0.88rem; line-height: 1.7; color: #3d4a5c;
+      padding-left: 1.3rem; position: relative;
+    }
+    .exp-bullets li::before { content: '›'; position: absolute; left: 0; font-size: 1.1rem; line-height: 1.4; font-weight: 700; }
+    .exp-block:nth-child(1) .exp-bullets li::before { color: var(--s3-accent); }
+    .exp-block:nth-child(2) .exp-bullets li::before { color: var(--s4-accent); }
+    .exp-block:nth-child(3) .exp-bullets li::before { color: var(--s5-accent); }
+    .exp-bullets li strong { color: var(--dark); font-weight: 600; }
+
+    .metrics-box { margin-top: 1rem; border-radius: 10px; padding: 1.1rem 1.3rem; }
+    .exp-block:nth-child(1) .metrics-box { background: #f5f0ff; border: 1px solid #c5b8f0; }
+    .exp-block:nth-child(2) .metrics-box { background: var(--s4-bg); border: 1px solid var(--s4-border); }
+    .exp-block:nth-child(3) .metrics-box { background: var(--s5-bg); border: 1px solid var(--s5-border); }
+    .metrics-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.75rem; }
+    .exp-block:nth-child(1) .metrics-label { color: var(--s3-accent); }
+    .exp-block:nth-child(2) .metrics-label { color: var(--s4-accent); }
+    .exp-block:nth-child(3) .metrics-label { color: var(--s5-accent); }
+    .metrics-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 0.5rem; }
+    .metric-item { font-size: 0.81rem; line-height: 1.5; color: #3a3a4a; display: flex; align-items: flex-start; gap: 0.4rem; }
+    .metric-item::before { content: '✓'; font-weight: 700; flex-shrink: 0; }
+    .exp-block:nth-child(1) .metric-item::before { color: var(--s3-accent); }
+    .exp-block:nth-child(2) .metric-item::before { color: var(--s4-accent); }
+    .exp-block:nth-child(3) .metric-item::before { color: var(--s5-accent); }
+
+    /* EDUCATION — rose */
+    .s-education { background: var(--s4-bg); }
+    .s-education .eyebrow-dot { background: var(--s4-accent); }
+    .s-education .eyebrow-label { color: var(--s4-accent); }
+    .s-education .eyebrow-line { background: var(--s4-accent); }
+    .edu-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    .edu-card {
+      background: #fff; border-radius: 12px; padding: 1.5rem 1.6rem;
+      border: 1.5px solid var(--s4-border); box-shadow: 0 2px 14px rgba(22,128,60,0.06);
+    }
+    .edu-icon {
+      width: 36px; height: 36px; background: var(--s4-bg); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 0.9rem; font-size: 1.1rem;
+    }
+    .edu-degree { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--dark); line-height: 1.3; margin-bottom: 0.4rem; }
+    .edu-year { font-size: 0.78rem; font-weight: 600; color: var(--s4-accent); letter-spacing: 0.05em; }
+
+    /* CERTS — blue */
+    .s-certs { background: var(--s5-bg); }
+    .s-certs .eyebrow-dot { background: var(--s5-accent); }
+    .s-certs .eyebrow-label { color: var(--s5-accent); }
+    .s-certs .eyebrow-line { background: var(--s5-accent); }
+    .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 0.75rem; }
+    .cert-card {
+      background: #fff; border: 1.5px solid var(--s5-border); border-radius: 10px;
+      padding: 0.9rem 1.1rem; font-size: 0.83rem; line-height: 1.45; color: #2d3748;
+      display: flex; align-items: flex-start; gap: 0.6rem;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .cert-card:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(21,88,176,0.1); }
+    .cert-star {
+      flex-shrink: 0; width: 20px; height: 20px; background: var(--s5-bg); border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.65rem; color: var(--s5-accent); font-weight: 700; margin-top: 1px;
+    }
+
+    footer {
+      background: var(--hero-bg); padding: 2.5rem clamp(1.5rem, 6vw, 5rem); text-align: center;
+    }
+    .footer-name { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: #fff; margin-bottom: 0.7rem; }
+    footer p { font-size: 0.82rem; color: rgba(255,255,255,0.45); }
+    footer a { color: #93c5fd; text-decoration: none; }
+    footer a:hover { color: #fff; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .edu-row { grid-template-columns: 1fr; }
+      .exp-top { flex-direction: column; }
+      .exp-timeline { padding-left: 1.5rem; }
+      .exp-block::before { left: -1.85rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <span class="nav-name">Sandeep Sharma</span>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#certifications">Certifications</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <div class="hero-inner">
+      <div class="hero-badge">Principal Product Leader · 18 Years Experience</div>
+      <h1>Sandeep<br/><em>Sharma</em></h1>
+      <p class="hero-tagline">Strategic Agile Transformational Leader driving large-scale product value delivery in digital retail banking and core platform modernisation across global teams.</p>
+      <div class="hero-meta">
+        <span class="hero-pill">
+          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+          New Delhi, India
+        </span>
+        <a href="Mobile:+919958530866" class="hero-pill">
+          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.26.2 2.47.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z"/></svg>
+          +91 9958530866
+        </a>
+		<a href="Mail:mail2sandeep123@gmail.com" class="hero-pill">
+          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.26.2 2.47.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z"/></svg>
+          mail2sandeep123@gmail.com
+        </a>
+        <a href="http://www.linkedin.com/in/sandeepsharma123" target="_blank" rel="noopener" class="hero-pill">
+          <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT — green -->
+  <section class="section s-about" id="about">
+    <div class="section-inner">
+      <div class="section-eyebrow">
+        <div class="eyebrow-dot"></div>
+        <span class="eyebrow-label">About</span>
+        <div class="eyebrow-line"></div>
+      </div>
+      <div class="about-card">
+        Proven ability to optimize product lines utilizing data-driven decision making and deliver innovative customer-centric solutions that exceed business KPIs and meet regulatory/compliance benchmarks. Deep execution experience in requirements engineering, product lifecycle management, API integrations, and stakeholder governance. Recognized for driving end-to-end business value by integrating omni-channel customer journeys, modernizing branch operations, and spearheading transformative digital and payments initiatives that modernize traditional services while embedding them into scalable, next-gen platforms.
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS — orange -->
+  <section class="section s-skills" id="skills">
+    <div class="section-inner">
+      <div class="section-eyebrow">
+        <div class="eyebrow-dot"></div>
+        <span class="eyebrow-label">Core Competencies</span>
+        <div class="eyebrow-line"></div>
+      </div>
+      <div class="skills-grid">
+        <span class="skill-tag">Stakeholder Engagement</span>
+        <span class="skill-tag">Product Lifecycle Management</span>
+        <span class="skill-tag">AHA! Roadmap Planning &amp; Prioritization</span>
+        <span class="skill-tag">Agile / SAFe / Scrum</span>
+        <span class="skill-tag">Enterprise Agile Transformation</span>
+        <span class="skill-tag">Cross-Functional Team Leadership</span>
+        <span class="skill-tag">AI Adoption &amp; Prompting</span>
+        <span class="skill-tag">Generative &amp; Agentic AI</span>
+        <span class="skill-tag">User Story &amp; Backlog Refinement</span>
+        <span class="skill-tag">Metrics-Driven Business Analysis</span>
+        <span class="skill-tag">API Integration</span>
+        <span class="skill-tag">Core Banking (Systematics, Horizon, IBS)</span>
+        <span class="skill-tag">UAT &amp; Go-live Management</span>
+        <span class="skill-tag">JIRA / Confluence / Miro</span>
+        <span class="skill-tag">Figma / Balsamiq</span>
+        <span class="skill-tag">Microsoft Co-Pilot</span>
+        <span class="skill-tag">OKR Alignment</span>
+        <span class="skill-tag">Product Improvement &amp; Optimization</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE — purple -->
+  <section class="section s-experience" id="experience">
+    <div class="section-inner">
+      <div class="section-eyebrow">
+        <div class="eyebrow-dot"></div>
+        <span class="eyebrow-label">Professional Experience</span>
+        <div class="eyebrow-line"></div>
+      </div>
+      <div class="exp-timeline">
+
+        <div class="exp-block">
+          <div class="exp-card">
+            <div class="exp-top">
+              <div>
+                <div class="exp-title">Product Principal</div>
+                <div class="exp-company">Fidelity Information Services (FIS) India Pvt. Ltd.</div>
+                <div class="exp-project">Digital Banking Value Stream — Digital Enablement, Login, Fraud &amp; Growth, D1 OAO</div>
+              </div>
+              <span class="exp-period">May 2024 — Present</span>
+            </div>
+            <ul class="exp-bullets">
+              <li><strong>Led enterprise agile transformation of 15+ teams across 3 Value Streams</strong>, scaling across Cloud/DevOps with on-time delivery improvements (+5%) and cycle time reduction (-10%).</li>
+              <li><strong>Mentored Development Leaders, Product Owners and Scrum Masters</strong> in outcome-based coaching, resulting in increased employee engagement and measurable productivity gains.</li>
+              <li><strong>Scaled SAFe across multiple teams</strong>, coordinating cross-team dependencies and risk management for Digital Value streams.</li>
+              <li><strong>Aligned development objectives with OKRs</strong>, delivering accelerated MVP and a 15% reduction in defects post-release.</li>
+              <li><strong>Facilitated quarterly Inspect &amp; Adapt sessions</strong> — improved planned-to-done ratios to &gt;90% portfolio-wide.</li>
+              <li><strong>Member of Enterprise Agile Center of Excellence, Agile Guilds &amp; CoP</strong>, providing mentorship organization-wide.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-block">
+          <div class="exp-card">
+            <div class="exp-top">
+              <div>
+                <div class="exp-title">Principal Business System Analyst</div>
+                <div class="exp-company">Fidelity Information Services (FIS) India Pvt. Ltd.</div>
+                <div class="exp-project">D1 Product Suite (D1 OAO, D1-Banker/Teller, D1 Flex) &amp; Client Implementations (FBPR, MUFG, BAY Bank, Vietin Bank)</div>
+              </div>
+              <span class="exp-period">Dec 2011 — Apr 2024</span>
+            </div>
+            <ul class="exp-bullets">
+              <li><strong>Led digital account opening product transformation strategy</strong>, designing a frictionless online experience enabling customers to open accounts in record time.</li>
+            </ul>
+            <div class="metrics-box">
+              <div class="metrics-label">Digital Account Opening — Outcomes</div>
+              <div class="metrics-grid">
+                <div class="metric-item">Account opening: 14 min → 4.5 min (68% ↓)</div>
+                <div class="metric-item">Digital adoption: 31% → 79% in 18 months</div>
+                <div class="metric-item">Drop-off &lt;2% (industry avg: 6%)</div>
+                <div class="metric-item">KYC accuracy improved to 90% via GKYC APIs</div>
+              </div>
+            </div>
+            <ul class="exp-bullets" style="margin-top:1rem">
+              <li><strong>Orchestrated Banker Sales &amp; Service platform integration</strong> — 360° customer profiles, personalised recommendations, and automated workflow tools for front-office staff.</li>
+            </ul>
+            <div class="metrics-box">
+              <div class="metrics-label">Banker Platform — Outcomes</div>
+              <div class="metrics-grid">
+                <div class="metric-item">Migrated 400+ branches from legacy systems</div>
+                <div class="metric-item">Cross-sell ratio: 1.2 → 1.7 products/customer</div>
+                <div class="metric-item">22% lift in upsell conversion rate</div>
+                <div class="metric-item">In-branch wait time reduced by 15%</div>
+              </div>
+            </div>
+            <ul class="exp-bullets" style="margin-top:1rem">
+              <li><strong>Spearheaded digital teller modernisation</strong> — browser-based solutions streamlining cash transactions and enabling relationship-driven selling at branches.</li>
+            </ul>
+            <div class="metrics-box">
+              <div class="metrics-label">Digital Teller — Outcomes</div>
+              <div class="metrics-grid">
+                <div class="metric-item">37% increase in teller transaction throughput</div>
+                <div class="metric-item">Error rate: 1.3% → 0.4% post-automation</div>
+                <div class="metric-item">Teller training time cut by 34%</div>
+              </div>
+            </div>
+            <ul class="exp-bullets" style="margin-top:1rem">
+              <li>Developed user stories, use cases, process flows, and acceptance criteria; facilitated JAD and backlog grooming sessions.</li>
+              <li>Founded Business Analyst CoP — mentorship and knowledge transfer across India, North America, and APAC.</li>
+              <li>Mentored 10+ team members on business analysis, documentation, and UAT cycles.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-block">
+          <div class="exp-card">
+            <div class="exp-top">
+              <div>
+                <div class="exp-title">Senior Systems Engineer</div>
+                <div class="exp-company">Infosys Technologies Ltd.</div>
+                <div class="exp-project">Bank of America</div>
+              </div>
+              <span class="exp-period">May 2008 — Dec 2011</span>
+            </div>
+            <ul class="exp-bullets">
+              <li>Business and technical requirements analysis through structured stakeholder engagement with client teams.</li>
+              <li><strong>Developed high-visibility executive summary decks and test plans</strong> for program-level stakeholders, ensuring alignment and timely delivery.</li>
+              <li><strong>Orchestrated end-to-end business analysis activities</strong> — BRD creation, test strategy, and stakeholder management with consistently successful outcomes.</li>
+              <li><strong>Provided critical production deployment support</strong> ensuring smooth go-lives with zero post-deployment escalations.</li>
+              <li>Strategic conduit between business users and technical teams, communicating operational impact of defects and securing stakeholder agreement on workarounds.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION — rose -->
+  <section class="section s-education" id="education">
+    <div class="section-inner">
+      <div class="section-eyebrow">
+        <div class="eyebrow-dot"></div>
+        <span class="eyebrow-label">Education</span>
+        <div class="eyebrow-line"></div>
+      </div>
+      <div class="edu-row">
+        <div class="edu-card">
+          <div class="edu-icon">🎓</div>
+          <div class="edu-degree">Post Graduate Diploma in International Business (PGDIB)</div>
+          <div class="edu-year">2009 – 2011</div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-icon">💻</div>
+          <div class="edu-degree">Bachelor of Engineering (Computers)</div>
+          <div class="edu-year">2003 – 2007</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS — blue -->
+  <section class="section s-certs" id="certifications">
+    <div class="section-inner">
+      <div class="section-eyebrow">
+        <div class="eyebrow-dot"></div>
+        <span class="eyebrow-label">Certifications</span>
+        <div class="eyebrow-line"></div>
+      </div>
+      <div class="cert-grid">
+        <div class="cert-card"><span class="cert-star">★</span>Project Management Professional (PMP®, PMI)</div>
+        <div class="cert-card"><span class="cert-star">★</span>Agile Scrum Master (ASM®), EXIN</div>
+        <div class="cert-card"><span class="cert-star">★</span>Certified SAFe® 5 Release Train Engineer (RTE)</div>
+        <div class="cert-card"><span class="cert-star">★</span>Certified SAFe® 5 Advanced Scrum Master (ASM)</div>
+        <div class="cert-card"><span class="cert-star">★</span>Certified SAFe® 5 Agile Product Manager (APM)</div>
+        <div class="cert-card"><span class="cert-star">★</span>Certified SAFe® 5 Product Owner / Product Manager (POPM)</div>
+        <div class="cert-card"><span class="cert-star">★</span>Certified SAFe® 5 Practitioner (SAFe SP)</div>
+        <div class="cert-card"><span class="cert-star">★</span>Microsoft Certified: Managing Projects with MS Project 2010</div>
+        <div class="cert-card"><span class="cert-star">★</span>Microsoft Certified: Office Visio 2007 — Application Development</div>
+        <div class="cert-card"><span class="cert-star">★</span>IBM Certified Solution Designer — Rational Functional Tester for Java</div>
+        <div class="cert-card"><span class="cert-star">★</span>CTFL — Certified Tester Foundation Level (ISTQB)</div>
+        <div class="cert-card"><span class="cert-star">★</span>NCFM — Capital Market (Dealers) Module, NSE</div>
+        <div class="cert-card"><span class="cert-star">★</span>Agile Product Management — LinkedIn Learning &amp; Pluralsight</div>
+        <div class="cert-card"><span class="cert-star">★</span>Design Thinking &amp; Project Management — Pluralsight</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-name">Sandeep Sharma</div>
+    <p>
+      <a href="/cdn-cgi/l/email-protection#bfd2ded6d38dccded1dbdadacf8e8d8cffd8d2ded6d391dcd0d2"><span class="__cf_email__" data-cfemail="7419151d184607151a1011110445464
