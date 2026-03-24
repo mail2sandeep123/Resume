@@ -15,6 +15,7 @@
       --s3-bg: #f3f0ff; --s3-accent: #5b3ec8; --s3-border: #c5b8f0;
       --s4-bg: #f0fdf4; --s4-accent: #16803c; --s4-border: #86efac;
       --s5-bg: #f0f7ff; --s5-accent: #1558b0; --s5-border: #9dc4f0;
+      --s6-bg: #f0fdfc; --s6-accent: #0e7490; --s6-border: #7dd5e0;
       --dark: #111827; --text: #2d3748; --muted: #718096;
     }
 
@@ -243,7 +244,72 @@
       font-size: 0.65rem; color: var(--s5-accent); font-weight: 700; margin-top: 1px;
     }
 
-    footer {
+    /* KEY CONTRIBUTIONS — teal */
+    .s-contributions { background: var(--s6-bg); }
+    .s-contributions .eyebrow-dot { background: var(--s6-accent); }
+    .s-contributions .eyebrow-label { color: var(--s6-accent); }
+    .s-contributions .eyebrow-line { background: var(--s6-accent); }
+
+    .contributions-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+    }
+
+    .contribution-card {
+      background: #fff;
+      border: 1.5px solid var(--s6-border);
+      border-radius: 10px;
+      padding: 0.9rem 1rem;
+      display: flex;
+      flex-direction: row;
+      gap: 0.7rem;
+      align-items: flex-start;
+      box-shadow: 0 2px 10px rgba(14,116,144,0.05);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .contribution-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(14,116,144,0.11);
+    }
+
+    .contribution-icon {
+      flex-shrink: 0;
+      width: 32px; height: 32px;
+      background: var(--s6-bg);
+      border: 1.5px solid var(--s6-border);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.95rem;
+      margin-top: 2px;
+    }
+
+    .contribution-body { flex: 1; }
+
+    .contribution-stat {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--s6-accent);
+      line-height: 1.2;
+      margin-bottom: 0.25rem;
+    }
+
+    .contribution-text {
+      font-size: 0.77rem;
+      line-height: 1.55;
+      color: #3d4a5c;
+      font-weight: 400;
+    }
+
+    @media (max-width: 760px) {
+      .contributions-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .contributions-grid { grid-template-columns: 1fr; }
+    }
+
+    
       background: var(--hero-bg); padding: 2.5rem clamp(1.5rem, 6vw, 5rem); text-align: center;
     }
     .footer-name { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: #fff; margin-bottom: 0.7rem; }
@@ -270,6 +336,7 @@
   <nav>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
+      <li><a href="#contributions">Key Contributions</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#education">Education</a></li>
@@ -293,7 +360,7 @@
         </a>
 		<a href="Mail:mail2sandeep123@gmail.com" class="hero-pill">
           <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.26.2 2.47.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z"/></svg>
-          mail2sandeep123@gmail.com
+          <span class="__cf_email__" data-cfemail="462b272f2a743527282223233677747506212b272f2a6825292b">[email&#160;protected]</span>
         </a>
         <a href="http://www.linkedin.com/in/sandeepsharma123" target="_blank" rel="noopener" class="hero-pill">
           <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
@@ -317,17 +384,67 @@
     </div>
   </section>
 
-	    <div class="metrics-box">
-              <div class="metrics-label">Key Contributions</div>
-              <div class="metrics-grid">
-                <div class="metric-item">Drove $2.7M+ enterprise digital banking portfolio (Account Opening, Teller, Sales & Services), achieving 2X growth in digital adoption and customer acquisition while maintaining >90% delivery predictability through SAFe and Lean Portfolio Management.</div>
-                <div class="metric-item">Accelerated program execution by 30% and secured 100% stakeholder approval by leading Product roadmap planning, PI planning, and discovery workshops aligned to clear product vision and MVP outcomes.</div>
-                <div class="metric-item">Improved portfolio governance and decision-making by implementing scalable frameworks (SOWs, KPIs, OKRs, dashboards), reducing scope creep by 20% and enhancing delivery transparency.</div>
-                <div class="metric-item">Boosted operational efficiency by 40% through AI-driven automation and process optimization, enhancing customer experience while maintaining strong delivery quality.</div>
-				<div class="metric-item">Delivered $2M+ cost savings by optimizing value streams, eliminating bottlenecks, and driving automation initiatives across banking workflows.</div>
-                <div class="metric-item">Increased team productivity by 25% and maintained <2% defect leakage by translating strategic priorities into execution-ready roadmaps and PI objectives in collaboration with CXO leadership.</div>
-              </div>
-            </div>
+  <!-- KEY CONTRIBUTIONS — teal -->
+  <section class="section s-contributions" id="contributions">
+    <div class="section-inner">
+      <div class="section-eyebrow">
+        <div class="eyebrow-dot"></div>
+        <span class="eyebrow-label">Key Contributions</span>
+        <div class="eyebrow-line"></div>
+      </div>
+      <div class="contributions-grid">
+
+        <div class="contribution-card">
+          <div class="contribution-icon">💼</div>
+          <div class="contribution-body">
+            <div class="contribution-stat">$2.7M+ Portfolio</div>
+            <div class="contribution-text">Drove enterprise digital banking portfolio (Account Opening, Teller, Sales &amp; Services), achieving 2X growth in digital adoption and customer acquisition while maintaining &gt;90% delivery predictability through SAFe and Lean Portfolio Management.</div>
+          </div>
+        </div>
+
+        <div class="contribution-card">
+          <div class="contribution-icon">🚀</div>
+          <div class="contribution-body">
+            <div class="contribution-stat">30% Faster Execution</div>
+            <div class="contribution-text">Accelerated program execution and secured 100% stakeholder approval by leading Product roadmap planning, PI planning, and discovery workshops aligned to clear product vision and MVP outcomes.</div>
+          </div>
+        </div>
+
+        <div class="contribution-card">
+          <div class="contribution-icon">📊</div>
+          <div class="contribution-body">
+            <div class="contribution-stat">20% Less Scope Creep</div>
+            <div class="contribution-text">Improved portfolio governance and decision-making by implementing scalable frameworks (SOWs, KPIs, OKRs, dashboards), reducing scope creep and enhancing delivery transparency.</div>
+          </div>
+        </div>
+
+        <div class="contribution-card">
+          <div class="contribution-icon">🤖</div>
+          <div class="contribution-body">
+            <div class="contribution-stat">40% Efficiency Boost</div>
+            <div class="contribution-text">Boosted operational efficiency through AI-driven automation and process optimization, enhancing customer experience while maintaining strong delivery quality.</div>
+          </div>
+        </div>
+
+        <div class="contribution-card">
+          <div class="contribution-icon">💰</div>
+          <div class="contribution-body">
+            <div class="contribution-stat">$2M+ Cost Savings</div>
+            <div class="contribution-text">Delivered significant cost savings by optimizing value streams, eliminating bottlenecks, and driving automation initiatives across banking workflows.</div>
+          </div>
+        </div>
+
+        <div class="contribution-card">
+          <div class="contribution-icon">📈</div>
+          <div class="contribution-body">
+            <div class="contribution-stat">25% Productivity Gain</div>
+            <div class="contribution-text">Increased team productivity and maintained &lt;2% defect leakage by translating strategic priorities into execution-ready roadmaps and PI objectives in collaboration with CXO leadership.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
 
   <!-- SKILLS — orange -->
   <section class="section s-skills" id="skills">
@@ -529,4 +646,4 @@
   <footer>
     <div class="footer-name">Sandeep Sharma</div>
     <p>
-      <a href="/cdn-cgi/l/email-protection#bfd2ded6d38dccded1dbdadacf8e8d8cffd8d2ded6d391dcd0d2"><span class="__cf_email__" data-cfemail="7419151d184607151a1011110445464
+      <a href="/cdn-cgi/l/email-protection#bfd2ded6d38dccded1dbdadacf8e8
